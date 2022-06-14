@@ -1,6 +1,6 @@
 from . import models as mdl
 from . import train_utils as tu
-from keras.optimizers import RMSprop, Adam, SGD 
+from tensorflow.keras.optimizers import RMSprop, Adam, SGD 
 
 """ Utilities to compile a model (loss, optimizer) and sends to training
 
