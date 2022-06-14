@@ -3,14 +3,14 @@ import tensorflow as tf
 import random
 import shelve
 import _pickle as pickle
-from keras.models import Sequential, Model
-from keras.callbacks import TensorBoard, EarlyStopping
-from keras.models import load_model
-from keras.layers import Input, Dense, Activation, Dropout, Flatten
-from keras.layers import Conv2D, Add, Reshape
-from keras.optimizers import RMSprop, Adam, SGD
-from keras.utils import np_utils, plot_model
-from keras.losses import mean_squared_error
+from tensorflow.tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.callbacks import TensorBoard, EarlyStopping
+from tensorflow.keras.models import load_model
+from tensorflow.keras.layers import Input, Dense, Activation, Dropout, Flatten
+from tensorflow.keras.layers import Conv2D, Add, Reshape
+from tensorflow.keras.optimizers import RMSprop, Adam, SGD
+from tensorflow.keras.utils import np_utils, plot_model
+from tensorflow.keras.losses import mean_squared_error
 
 
 """	Utilities for Training:
