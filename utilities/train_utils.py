@@ -9,7 +9,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.layers import Input, Dense, Activation, Dropout, Flatten
 from tensorflow.keras.layers import Conv2D, Add, Reshape
 from tensorflow.keras.optimizers import RMSprop, Adam, SGD
-from tensorflow.keras.utils import np_utils, plot_model
+from keras.utils import np_utils, plot_model
 from tensorflow.keras.losses import mean_squared_error
 
 
