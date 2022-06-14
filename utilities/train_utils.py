@@ -3,7 +3,7 @@ import tensorflow as tf
 import random
 import shelve
 import _pickle as pickle
-from tensorflow.tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.callbacks import TensorBoard, EarlyStopping
 from tensorflow.keras.models import load_model
 from tensorflow.keras.layers import Input, Dense, Activation, Dropout, Flatten
