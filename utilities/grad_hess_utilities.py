@@ -3,15 +3,16 @@ import tensorflow as tf
 import random
 import shelve
 import _pickle as pickle
-from keras.models import Sequential, Model
-from keras.callbacks import TensorBoard, EarlyStopping
-from keras.models import load_model, clone_model
-from keras.layers import Input, Dense, Activation, Dropout, Flatten
-from keras.layers import Conv2D, Add, Reshape
-from keras.optimizers import RMSprop, Adam, SGD
-from keras.utils import np_utils, plot_model
-from keras.losses import mean_squared_error
-import keras.backend as K
+from tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.callbacks import TensorBoard, EarlyStopping
+from tensorflow.keras.models import load_model, clone_model
+from tensorflow.keras.layers import Input, Dense, Activation, Dropout, Flatten
+from tensorflow.keras.layers import Conv2D, Add, Reshape
+from tensorflow.keras.optimizers import RMSprop, Adam, SGD
+from tensorflow.keras.utils import plot_model
+from keras.utils import np_utils
+from tensorflow.keras.losses import mean_squared_error
+import tensorflow.keras.backend as K
 from copy import copy, deepcopy
 
 
@@ -66,7 +67,7 @@ def get_inputs_gradient(model, model_inputs, labels, inputs_indice=0):
 # Loss needs to be changed. Create a copy to avoid changing original model
 	model_dummy = clone_model(model)
 	model_dummy.set_weights(model.get_weights())
-	model_dummy = Model(inputs=model_dummy.inputs, outputs=model_dummy.get_layer('New_Utility_functions').output)
+	model_dummy = Model(inputs=model_dummy.inputs, outputs=model_dummy.get_layer('New_Utility_functions').output) # Model here
 	model_dummy.compile(loss=custom_loss, optimizer = 'adam', metrics = ['accuracy'])
 	inputs_layer_placeholder = model_dummy.inputs[inputs_indice]
 
@@ -101,7 +102,7 @@ def get_stds(model, model_inputs, labels, layer_name='Utilities'):
 def elasticity_sample_study(model, sample_input, inputs_indice, feature_indice, n=100, range=[-1,1]):
 	points = np.linspace(range[0],range[1],n)
 	predictions = []
-	new_model = Model(inputs=model.inputs, outputs=model.get_layer('New_Utility_functions').output)
+	new_model = Model(inputs=model.inputs, outputs=model.get_layer('New_Utility_functions').output)			# Model here
 	new_model.compile(optimizer='adam', loss='categorical_crossentropy')
 	for i in points:
 		sample_input[inputs_indice][:,feature_indice:feature_indice+1] = i
@@ -112,7 +113,7 @@ def elasticity_sample_study(model, sample_input, inputs_indice, feature_indice, 
 def elasticity_study(model, model_inputs, inputs_indice, feature_indice, n=100, x_range=[-0.3,0.3]):
 	points = np.linspace(x_range[0],x_range[1],n)
 	elasticity = []
-	new_model = Model(inputs=model.inputs, outputs=model.get_layer('New_Utility_functions').output)
+	new_model = Model(inputs=model.inputs, outputs=model.get_layer('New_Utility_functions').output)			# Model here
 	new_model.compile(optimizer='adam', loss='categorical_crossentropy')
 	old_predictions = new_model.predict(model_inputs)
 	choices = np.argmax(old_predictions, axis=1)
