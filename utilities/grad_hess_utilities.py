@@ -30,6 +30,7 @@ from copy import copy, deepcopy
 def get_inverse_Hessian(model, model_inputs, labels, layer_name='Utilities'):
 	""" Note, in Tensorflow, gradient operator is normalized by length of data"""
 	data_size = len(model_inputs[0])
+	print("model:", model, "model_type:", type(model))
 
 # Get layer and gradient w.r.t. loss
 	beta_layer = model.get_layer(layer_name)
@@ -230,6 +231,11 @@ if __name__ == '__main__':
 
 	model = load_model(model_name)
 	
+	# plot model
+	print(model_name)
+	dot_img_file = model_name + '.png'
+	plot_model(model, to_file=dot_img_file, show_shapes=True)
+
 	train_data = np.load(train_name)
 	labels = train_data[:,-1,:]
 	train_data = np.delete(train_data, -1, axis = 1)
