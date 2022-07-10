@@ -32,10 +32,10 @@ def train_test_split(filePath, seed = None):
     data = np.loadtxt(filePath + fileName + '.dat',skiprows = 1)
     TAG = data[:,-1]
 
-    LF = [p for p,i in enumerate(CHOICE) if i == [3, [1]]]
-    CA = [p for p,i in enumerate(CHOICE) if i == [3, [2]]]
-    GR = [p for p,i in enumerate(CHOICE) if i == [3, [3]]]
-    Other = [p for p,i in enumerate(CHOICE) if i == [3, [4]]]
+    LF = [p for p,i in enumerate(CHOICE) if i == 1]
+    CA = [p for p,i in enumerate(CHOICE) if i == 2]
+    GR = [p for p,i in enumerate(CHOICE) if i == 3]
+    Other = [p for p,i in enumerate(CHOICE) if i == 4]
 
 
     np.random.shuffle(LF)
@@ -136,10 +136,10 @@ def keras_input(filePath, fileInputName, filePart = '', simpleArchitecture = Fal
     ASCs = np.ones(TAG.size)
     ZEROs = np.zeros(TAG.size)
 
-    TAG_LF = (TAG == [3, [1]])
-    TAG_CA = (TAG == [3, [2]])
-    TAG_GR = (TAG == [3, [3]])
-    TAG_Other = (TAG == [3, [4]])
+    TAG_LF = (TAG == 1)
+    TAG_CA = (TAG == 2)
+    TAG_GR = (TAG == 3)
+    TAG_Other = (TAG == 4)
 
     #  lmnl only
     train_data = np.array(
