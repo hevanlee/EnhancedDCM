@@ -89,7 +89,7 @@ def fiveParallelHrusch07(filePath, fileInputName, beta_num, choices_num, train_d
 if __name__ == '__main__':
 
 	# splits data into train and test set
-	# extensions = swissDM.train_test_split(filePath, seed = 32)
+	extensions = fiveDM.train_test_split(filePath, seed = 32)
 
 	filePath = 'five_parallel_synth/'
 	extensions = ['_train', '_test']
