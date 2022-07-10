@@ -138,7 +138,7 @@ def keras_input(filePath, fileInputName, filePart = '', simpleArchitecture = Fal
 
     TAG_LF = (TAG == [3, [1]])
     TAG_CA = (TAG == [3, [2]])
-    TAG_GR = (TAG == [3, 3]])
+    TAG_GR = (TAG == [3, [3]])
     TAG_Other = (TAG == [3, [4]])
 
     #  lmnl only
