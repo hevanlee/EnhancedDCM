@@ -1,5 +1,5 @@
 from keras import backend as K
-from fiveParallel_paper import data_manager as fiveDM
+from five_parallel_synth import data_manager as fiveDM
 if __name__ == "__main__" and __package__ is None:
     from sys import path
     from os.path import dirname as dir
