@@ -60,6 +60,7 @@ if __name__ == "__main__":
     with open('five_parallel_synth.dat', 'w') as f:
         f.write('\t'.join([x for x in categories]))
 
+    print("Categories written.")
     scenes = []
 
     for df_scene in df_scenes:
@@ -70,6 +71,7 @@ if __name__ == "__main__":
         tag = df_scene['tag']
 
         scene_list = create_scene(df_tracks, s_id, p, s, e, tag)
+        print("Creating scene id:", s_id)
         for scene in scene_list:
             scene_str = '\t'.join([str(x) for x in scene])
             scenes.append(scene_str)
@@ -78,3 +80,5 @@ if __name__ == "__main__":
         f.write('\n')
         for scene in scenes:
             f.write(f"{scene}\n")
+    
+    print("All scenes written.")
