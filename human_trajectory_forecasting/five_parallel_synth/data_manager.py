@@ -47,7 +47,7 @@ def train_test_split(filePath, seed = None):
     test_ratio = 0.8
     step_LF = int(len(LF)*test_ratio)
     step_CA = int(len(CA)*test_ratio)
-    step_GR = int(len(CAR)*test_ratio)
+    step_GR = int(len(GR)*test_ratio)
     step_Other = int(len(Other)*test_ratio)
 
     file_part = open(filePath + fileName + '_train' + '.dat', 'w')
