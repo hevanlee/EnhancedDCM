@@ -1,19 +1,22 @@
 #import ujson as json
 import pandas as pd
+import numpy as np
 
 def grep(tracks, p, s, e):
     primary = []
     neighbours = []
     count = 0
-    while count < 100:
+    # 21 tracks for each pedestrian in each scene
+    while count < 105:
         for track in tracks:
             if track['f'] >= s and track['f'] <= e:
                 if track['p'] == p:
                     primary.append(track)
-                    count += 1
                 else:
                     neighbours.append(track)
-                    count += 1
+                count += 1
+    # print(primary, "\n")
+    # print(neighbours, "\n")
     return primary, neighbours
 
 def create_scene(tracks, s_id, p, s, e, tag):
@@ -22,17 +25,20 @@ def create_scene(tracks, s_id, p, s, e, tag):
     scene.append(s_id)
     primary, neighbours = grep(tracks, p, s, e)
     # {"f": 95, "p": 19, "x": 0.21, "y": 0.45}
-    
+    # print("p:", len(primary), "n:", len(neighbours))
     for track in sorted(primary, key=lambda x: (x['p'], x['f'])):
-        scene.extend([track['x'], track['y']])
+        scene.extend([float(np.round(track['x'], 2)), float(np.round(track['y'], 2))])
 
     for track in sorted(neighbours, key=lambda x: (x['p'], x['f'])):
-        scene.extend([track['x'], track['y']])
-
+        scene.extend([float(np.round(track['x'], 2)), float(np.round(track['y'], 2))])
+    '''
+    print("scene:", scene)
+    print("scene_list:", scene_list)
+    '''
     for i in range(len(tag[-1])):
-        sc_copy = scene
-        sc_copy.append(tag[-1][i])
-        scene_list.append(sc_copy)
+        no_tag = scene.copy()
+        scene_list.append(no_tag)
+        scene_list[i].append(tag[-1][i])
 
     return scene_list
 
@@ -54,10 +60,10 @@ if __name__ == "__main__":
 
     # hard coded for efficiency
     df_scenes = df.iloc[0:43697, 0]
-    df_tracks = df.iloc[43698: , 1]  
+    df_tracks = df.iloc[43697: , 1]  
     
     categories = create_categories()
-    with open('five_parallel_synth.dat', 'w') as f:
+    with open('five_parallel_synth/five_parallel_synth.dat', 'w') as f:
         f.write('\t'.join([x for x in categories]))
 
     print("Categories written.")
@@ -70,9 +76,22 @@ if __name__ == "__main__":
         e = df_scene['e']
         tag = df_scene['tag']
 
-        scene_list = create_scene(df_tracks, s_id, p, s, e, tag)
+        # eliminates previously encountered tracks
+        '''
+        prev_s = -1
+        if int(s/100) > prev_s:
+            tracks = df_tracks[prev_s * 105:]
+            prev_s = int(s/100)
+        '''
         print("Creating scene id:", s_id)
+
+        scene_list = create_scene(df_tracks, s_id, p, s, e, tag)
         for scene in scene_list:
+            with open('five_parallel_synth/five_parallel_synth.dat', 'a') as f:
+                f.write("\n")
+                f.write('\t'.join([str(x) for x in scene]))
+            
+            '''
             scene_str = '\t'.join([str(x) for x in scene])
             scenes.append(scene_str)
 
@@ -82,3 +101,4 @@ if __name__ == "__main__":
             f.write(f"{scene}\n")
     
     print("All scenes written.")
+    '''
