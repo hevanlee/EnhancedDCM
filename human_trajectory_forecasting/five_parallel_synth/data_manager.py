@@ -32,10 +32,10 @@ def train_test_split(filePath, seed = None):
     data = np.loadtxt(filePath + fileName + '.dat',skiprows = 1)
     TAG = data[:,-1]
 
-    LF = [p for p,i in enumerate(CHOICE) if i == 1]
-    CA = [p for p,i in enumerate(CHOICE) if i == 2]
-    GR = [p for p,i in enumerate(CHOICE) if i == 3]
-    Other = [p for p,i in enumerate(CHOICE) if i == 4]
+    LF = [p for p,i in enumerate(TAG) if i == 1]
+    CA = [p for p,i in enumerate(TAG) if i == 2]
+    GR = [p for p,i in enumerate(TAG) if i == 3]
+    Other = [p for p,i in enumerate(TAG) if i == 4]
 
 
     np.random.shuffle(LF)
