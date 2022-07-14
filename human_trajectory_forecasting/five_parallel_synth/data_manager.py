@@ -160,7 +160,7 @@ def keras_input(filePath, fileInputName, filePart = '', simpleArchitecture = Fal
             [p1, p2, p3, p4, TAG_GR]
             [p1, p2, p3, p4, TAG_Other]])
     '''
-    train_data = np.swapaxes(train_data,0,2)
+    # train_data = np.swapaxes(train_data,0,2)
 
     delete_list = range(len(data))
     delete_list = np.delete(delete_list, [2, 3, 4])

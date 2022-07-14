@@ -116,7 +116,7 @@ if __name__ == '__main__':
 		lmnlArchitecture = True
 		beta_num = 3
 		nExtraFeatures = 12
-		_, _, train_data_name = swissDM.keras_input(filePath+folderName, fileInputName, filePart=extensions[0],
+		_, _, train_data_name = fiveDM.keras_input(filePath+folderName, fileInputName, filePart=extensions[0],
 													lmnlArchitecture=lmnlArchitecture)
 		fiveParallelMixed(filePath+folderName, fileInputName, beta_num, choices_num, nExtraFeatures, train_data_name, extraInput=True)
 		'''
@@ -138,7 +138,7 @@ if __name__ == '__main__':
 			nExtraFeatures = 12
 			_, _, train_data_name = fiveDM.keras_input(filePath+folderName, fileInputName, filePart=extensions[0],
 														simpleArchitecture=lmnlArchitecture)
-			_, saveExtension = FiveParallelMixed(filePath+folderName, fileInputName, beta_num, choices_num, nExtraFeatures,
+			_, saveExtension = fiveParallelMixed(filePath+folderName, fileInputName, beta_num, choices_num, nExtraFeatures,
 											   train_data_name, extraInput=True, saveName='{}'.format(i),
 											   filePart=extensions[0], networkSize=i)
 			
