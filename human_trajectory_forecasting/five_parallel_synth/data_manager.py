@@ -129,8 +129,8 @@ def keras_input(filePath, fileInputName, filePart = '', simpleArchitecture = Fal
     scale = 100.0
     #scale = 1.0
 
-    p1_scaled = p1/scale
-    p2_scaled = p2/scale
+    # p1_scaled = p1/scale
+    # p2_scaled = p2/scale
     
 
     ASCs = np.ones(TAG.size)
@@ -141,6 +141,14 @@ def keras_input(filePath, fileInputName, filePart = '', simpleArchitecture = Fal
     TAG_GR = (TAG == 3)
     TAG_Other = (TAG == 4)
 
+    print(p1)
+    print(p2)
+    print(p3)
+    print(p4)
+    print(TAG_LF)
+    print(TAG_CA)
+    print(TAG_GR)
+    print(TAG_Other)
     #  lmnl only
     train_data = np.array(
             [[p1, p2, p3, p4, TAG_LF],
